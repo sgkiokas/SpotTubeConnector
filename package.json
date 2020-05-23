@@ -1,0 +1,25 @@
+{
+  "name": "spottubeconnector",
+  "version": "1.0.0",
+  "description": "A simple app based on NodeJs connecting YouTube with Spotify playlists",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgkiokas/SpotTubeConnector.git"
+  },
+  "author": "Stylianos Gkiokas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sgkiokas/SpotTubeConnector/issues"
+  },
+  "homepage": "https://github.com/sgkiokas/SpotTubeConnector#readme",
+  "dependencies": {
+    "btoa": "^1.2.1",
+    "express": "^4.17.1",
+    "https": "^1.0.0",
+    "js-base64": "^2.5.2"
+  }
+}
