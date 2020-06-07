@@ -6,6 +6,7 @@ const config = require('../config/config');
 const utils = require('../libs/utils');
 const base64 = require('js-base64').Base64;
 const open = require('open');
+const assert = require('assert');
 
 const clientID = config.APP_CONFIG.CLIENT_ID;
 const redirectURI = encodeURIComponent(config.APP_CONFIG.REDIRECT_URI);
@@ -31,15 +32,15 @@ let retrieveAccessToken = async (req, res) => {
 
     this.ACCESS_TOKEN = JSON.parse(utils.spawnSyncWrapper(curlCommand)).access_token;
 
-    // TODO: retrieve the username via a UI field
-    retrievePlaylists('pj4w5oml9gxgsvv63j7qyd8i9');
+    retrievePlaylists(config.APP_CONFIG.SPOTIFY_USERNAME);
 }
 
 let retrievePlaylists = async (userName) =>  {
-    // https://api.spotify.com/v1/users/{user_id}/playlists
     let usersAPIPath = '/users';
     let response = await rest.restGETRequestWrapper(config.APP_CONFIG.SPOTIFY_API_URI, `${usersAPIPath}/${userName}/playlists`, this.ACCESS_TOKEN, false);
     assert.strictEqual(response.statusCode, 200, `Response code is ${response.statusCode} and not 200`);
+
+    console.log(response);
 }
 
 router.get(endpoints.REDIRECT_URI, retrieveAccessToken);
