@@ -8,6 +8,7 @@ async function restGETRequestWrapper(hostName, apiPath, accessToken, parseJson) 
         method: 'GET',
         headers: {
             'Accept': 'application/json',
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
         },
         json: parseJson,

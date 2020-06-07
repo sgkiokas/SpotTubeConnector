@@ -4,6 +4,7 @@ const APP_CONFIG = {
     'REDIRECT_URI': process.env.REDIRECT_URI,
     'SPOTIFY_ACCOUNTS_URI': process.env.SPOTIFY_ACCOUNTS_URI || 'accounts.spotify.com',
     'SPOTIFY_API_URI': process.env.SPOTIFY_API_URI || 'api.spotify.com/v1',
+    'SPOTIFY_USERNAME': process.env.SPOTIFY_USERNAME,
 };
 
 module.exports = {
