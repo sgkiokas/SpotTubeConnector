@@ -5,6 +5,7 @@ const rest = require('../libs/restCalls');
 const config = require('../config/config');
 const utils = require('../libs/utils');
 const base64 = require('js-base64').Base64;
+const open = require('open');
 
 const clientID = config.APP_CONFIG.CLIENT_ID;
 const redirectURI = encodeURIComponent(config.APP_CONFIG.REDIRECT_URI);
@@ -16,7 +17,9 @@ this.ACCESS_TOKEN = '';
 let landing = async (req, res) => {
     // immediately redirect the app to the authorize endpoint
     let authorizationURL = `https://${config.APP_CONFIG.SPOTIFY_ACCOUNTS_URI}/en/authorize?client_id=${clientID}&response_type=${responseType}&redirect_uri=${redirectURI}&scope=${requestScope}`;
-    res.redirect(authorizationURL);
+    (async () => {
+        await open(authorizationURL, {app: ['google chrome', '--incognito']});
+    })();
 }
 
 let retrieveAccessToken = async (req, res) => {
@@ -28,12 +31,14 @@ let retrieveAccessToken = async (req, res) => {
 
     this.ACCESS_TOKEN = JSON.parse(utils.spawnSyncWrapper(curlCommand)).access_token;
 
-    // queryUser('a-user-name');
+    // TODO: retrieve the username via a UI field
+    retrievePlaylists('pj4w5oml9gxgsvv63j7qyd8i9');
 }
 
-let queryUser = async (userName) =>  {
-    // TODO: automatically retrieve the username
-    let response = await rest.restGETRequestWrapper(config.APP_CONFIG.SPOTIFY_API_URI, userName, this.ACCESS_TOKEN, false);
+let retrievePlaylists = async (userName) =>  {
+    // https://api.spotify.com/v1/users/{user_id}/playlists
+    let usersAPIPath = '/users';
+    let response = await rest.restGETRequestWrapper(config.APP_CONFIG.SPOTIFY_API_URI, `${usersAPIPath}/${userName}/playlists`, this.ACCESS_TOKEN, false);
     assert.strictEqual(response.statusCode, 200, `Response code is ${response.statusCode} and not 200`);
 }
 

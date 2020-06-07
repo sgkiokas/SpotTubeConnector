@@ -12,7 +12,7 @@ let spawnSyncWrapper = stringifiedCommand => {
     else {
         commandOutput = command.stdout.toString().trim();
         if(commandOutput !== '') {
-            console.log(`spawnSyncWrapper command output ${commandOutput}`);
+            console.log(`Spawn Sync Wrapper output ${commandOutput}`);
         }
         assert.strictEqual((commandOutput.includes('FAILED') || []).length, 0, commandOutput);
     }
