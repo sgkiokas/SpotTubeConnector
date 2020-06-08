@@ -3,7 +3,9 @@ const APP_CONFIG = {
     'CLIENT_SECRET': process.env.CLIENT_SECRET,
     'REDIRECT_URI': process.env.REDIRECT_URI,
     'SPOTIFY_ACCOUNTS_URI': process.env.SPOTIFY_ACCOUNTS_URI || 'accounts.spotify.com',
-    'SPOTIFY_API_URI': process.env.SPOTIFY_API_URI || 'api.spotify.com/v1',
+    'SPOTIFY_API_URI': process.env.SPOTIFY_API_URI || 'api.spotify.com',
+    'SPOTIFY_API_VERSION': process.env.SPOTIFY_API_VERSION || 'v1',
+    'SPOTIFY_USERS_ENDPOINT': 'users',
     'SPOTIFY_USERNAME': process.env.SPOTIFY_USERNAME,
 };
 

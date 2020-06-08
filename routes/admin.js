@@ -12,7 +12,7 @@ const clientID = config.APP_CONFIG.CLIENT_ID;
 const redirectURI = encodeURIComponent(config.APP_CONFIG.REDIRECT_URI);
 const clientSecret = config.APP_CONFIG.CLIENT_SECRET;
 const responseType = 'code';
-const requestScope = 'playlist-read-private';
+const requestScope = 'playlist-modify-public';
 this.ACCESS_TOKEN = '';
 
 let landing = async (req, res) => {
@@ -32,15 +32,27 @@ let retrieveAccessToken = async (req, res) => {
 
     this.ACCESS_TOKEN = JSON.parse(utils.spawnSyncWrapper(curlCommand)).access_token;
 
-    retrievePlaylists(config.APP_CONFIG.SPOTIFY_USERNAME);
+    retrievePlaylistsDetails(config.APP_CONFIG.SPOTIFY_USERNAME);
 }
 
-let retrievePlaylists = async (userName) =>  {
-    let usersAPIPath = '/users';
-    let response = await rest.restGETRequestWrapper(config.APP_CONFIG.SPOTIFY_API_URI, `${usersAPIPath}/${userName}/playlists`, this.ACCESS_TOKEN, false);
+let retrievePlaylistsDetails = async (userName) =>  {
+    let response = await rest.restGETRequestWrapper(config.APP_CONFIG.SPOTIFY_API_URI, `/${config.APP_CONFIG.SPOTIFY_API_VERSION}/${config.APP_CONFIG.SPOTIFY_USERS_ENDPOINT}/${userName}/playlists`, this.ACCESS_TOKEN, true);
     assert.strictEqual(response.statusCode, 200, `Response code is ${response.statusCode} and not 200`);
 
-    console.log(response);
+    let playlistMapper = new Map();
+    let playlistItems = response.body.items;
+
+    playlistItems.forEach(item => {
+        playlistMapper.set(item.id, item.name);
+    });
+}
+
+let createPlaylist = async (userName, playlistName) => {
+    let postBody = {
+        name: playlistName
+    };
+    let response = await rest.restPOSTRequestWrapper(config.APP_CONFIG.SPOTIFY_API_URI, `/${config.APP_CONFIG.SPOTIFY_API_VERSION}/${config.APP_CONFIG.SPOTIFY_USERS_ENDPOINT}/${userName}/playlists`, this.ACCESS_TOKEN, postBody);
+    assert.strictEqual(response.statusCode, 201, `Response code is ${response.statusCode} and not 201`);
 }
 
 router.get(endpoints.REDIRECT_URI, retrieveAccessToken);
