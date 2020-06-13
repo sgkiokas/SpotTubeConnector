@@ -6,6 +6,8 @@ const APP_CONFIG = {
     'SPOTIFY_API_URI': process.env.SPOTIFY_API_URI || 'api.spotify.com',
     'SPOTIFY_API_VERSION': process.env.SPOTIFY_API_VERSION || 'v1',
     'SPOTIFY_USERS_ENDPOINT': 'users',
+    'SPOTIFY_SEARCH_ENDPOINT': 'search',
+    'SPOTIFY_PLAYLISTS_ENDPOINT': 'playlists',
     'SPOTIFY_USERNAME': process.env.SPOTIFY_USERNAME,
 };
 
