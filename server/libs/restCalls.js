@@ -8,14 +8,15 @@ async function restGETRequestWrapper(hostName, apiPath, accessToken, parseJson) 
         method: 'GET',
         headers: {
             'Accept': 'application/json',
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`
         },
         json: parseJson,
-        rejectUnauthorized: false,
         requestCert: false,
         agent: false,
-        timeout: 200000
+        timeout: 200000,
     };
+
     return await new Promise((resolve, reject) => {
         const request = https.request(options, (response) => {
             let str = '';
@@ -54,11 +55,12 @@ async function restGETRequestWrapper(hostName, apiPath, accessToken, parseJson) 
     });
 }
 
-async function restPOSTRequestWrapper(hostName, port, apiPath, accessToken, postData) {
+async function restPOSTRequestWrapper(hostName, apiPath, accessToken, postData) {
     let postBody = JSON.stringify(postData);
+    console.log(postBody);
     let options = {
         hostname: hostName,
-        port: port,
+        port: 443,
         path: apiPath,
         method: 'POST',
         headers: {
@@ -66,10 +68,10 @@ async function restPOSTRequestWrapper(hostName, port, apiPath, accessToken, post
             'Authorization': `Bearer ${accessToken}`
         },
         json: true,
-        rejectUnauthorized: false,
         requestCert: true,
-        agent: false
+        agent: false,
     };
+
     return await new Promise((resolve, reject) => {
         const request = https.request(options, (response) => {
             let str = '';
