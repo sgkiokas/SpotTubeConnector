@@ -9,6 +9,9 @@ const APP_CONFIG = {
     'SPOTIFY_SEARCH_ENDPOINT': 'search',
     'SPOTIFY_PLAYLISTS_ENDPOINT': 'playlists',
     'SPOTIFY_USERNAME': process.env.SPOTIFY_USERNAME,
+    'SPOTIFY_PLAYLIST_MODIFY_PLUBLIC_SCOPE': 'playlist-modify-public',
+    'SPOTIFY_CODE_RESPONSE_TYPE': 'code',
+    'SPOTIFY_PLAYLIST_NAME': process.env.SPOTIFY_PLAYLIST_NAME,
 };
 
 module.exports = {

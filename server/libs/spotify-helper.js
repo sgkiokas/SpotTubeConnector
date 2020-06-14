@@ -1,6 +1,6 @@
-const rest = require('../libs/restCalls');
-const config = require('../config/config');
-const utils = require('../libs/utils');
+const rest = require('./restCalls');
+const config = require('../../config/config');
+const utils = require('./utils');
 const base64 = require('js-base64').Base64;
 const assert = require('assert');
 
@@ -20,8 +20,7 @@ let retrieveAccessToken = async (req, res) => {
 
     this.ACCESS_TOKEN = JSON.parse(utils.spawnSyncWrapper(curlCommand)).access_token;
 
-    // retrievePlaylistsDetails(config.APP_CONFIG.SPOTIFY_USERNAME);
-    addSongToPlaylist('Testing');
+    addSongToPlaylist(config.APP_CONFIG.SPOTIFY_PLAYLIST_NAME);
 }
 
 let retrievePlaylistsDetails = async (userName) =>  {
