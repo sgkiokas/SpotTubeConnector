@@ -15,7 +15,8 @@ this.ACCESS_TOKEN = '';
 
 let landing = async (req, res) => {
     // immediately redirect the app to the authorize endpoint
-    let authorizationURL = `https://${config.APP_CONFIG.SPOTIFY_ACCOUNTS_URI}/en/authorize?client_id=${clientID}&response_type=${responseType}&redirect_uri=${redirectURI}&scope=${requestScope}`;
+    // let authorizationURL = `https://${config.APP_CONFIG.SPOTIFY_ACCOUNTS_URI}/en/authorize?client_id=${clientID}&response_type=${responseType}&redirect_uri=${redirectURI}&scope=${requestScope}`;
+    let authorizationURL = `http://localhost:3000/`;
     res.redirect(authorizationURL);
 }
 
@@ -31,7 +32,7 @@ let retrieveAccessToken = async (req, res) => {
     // queryUser('a-user-name');
 }
 
-let queryUser = async (userName) =>  {
+let queryUser = async (userName) => {
     // TODO: automatically retrieve the username
     let response = await rest.restGETRequestWrapper(config.APP_CONFIG.SPOTIFY_API_URI, userName, this.ACCESS_TOKEN, false);
     assert.strictEqual(response.statusCode, 200, `Response code is ${response.statusCode} and not 200`);
@@ -40,4 +41,4 @@ let queryUser = async (userName) =>  {
 router.get(endpoints.REDIRECT_URI, retrieveAccessToken);
 router.get(endpoints.LANDING_PAGE, landing);
 
-module.exports =  router;
+module.exports = router;

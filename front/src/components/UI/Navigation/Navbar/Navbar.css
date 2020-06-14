@@ -1,0 +1,13 @@
+.form-inline {
+  justify-content: center;
+}
+
+@media (max-width: 995px) {
+  .form-inline {
+    flex-flow: column wrap !important;
+  }
+
+  .mr-sm-2.form-control {
+    margin-bottom: 5px;
+  }
+}
