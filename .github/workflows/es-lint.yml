@@ -1,0 +1,48 @@
+name: Node
+
+on: 
+  pull_request:
+    paths:
+    - 'config/**'
+    - 'front/**'
+    - 'routes/**'
+    - 'server/**'
+    - 'test/**'
+    - 'index.js'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Run Unit Tests
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install Dependencies
+        run: npm install
+      - name: Install React Dependencies
+        run: cd front && npm install
+      - name: Test
+        run: npm run test
+
+  lint:
+    runs-on: ubuntu-latest
+    name: ESLint
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install Dependencies
+        run: npm install
+      - name: Install React Dependencies
+        run: cd front && npm install
+      - name: Server lint
+        run: npm run lint
+      - name: UI lint
+        run: cd front && npm run lint
