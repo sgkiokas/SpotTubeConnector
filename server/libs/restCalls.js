@@ -9,7 +9,7 @@ async function restGETRequestWrapper(hostName, apiPath, accessToken, parseJson) 
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
+            'Authorization': accessToken
         },
         json: parseJson,
         requestCert: false,
@@ -57,7 +57,6 @@ async function restGETRequestWrapper(hostName, apiPath, accessToken, parseJson) 
 
 async function restPOSTRequestWrapper(hostName, apiPath, accessToken, postData) {
     let postBody = JSON.stringify(postData);
-    console.log(postBody);
     let options = {
         hostname: hostName,
         port: 443,
@@ -65,7 +64,7 @@ async function restPOSTRequestWrapper(hostName, apiPath, accessToken, postData) 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
+            'Authorization': accessToken
         },
         json: true,
         requestCert: true,
