@@ -23,7 +23,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Install React Dependencies
-        run: cd front && npm install
+        run: cd ui && npm install && cd ..
       - name: Test
         run: npm run test
 
@@ -40,8 +40,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Install React Dependencies
-        run: cd front && npm install
+        run: cd ui && npm install && cd ..
       - name: Server lint
         run: npm run lint
       - name: UI lint
-        run: cd front && npm run lint
+        run: cd ui && npm run lint
