@@ -12,6 +12,7 @@ const APP_CONFIG = {
     'SPOTIFY_PLAYLIST_MODIFY_PLUBLIC_SCOPE': 'playlist-modify-public',
     'SPOTIFY_CODE_RESPONSE_TYPE': 'code',
     'SPOTIFY_PLAYLIST_NAME': process.env.SPOTIFY_PLAYLIST_NAME,
+    'SPOTIFY_TRACK_DETAILS': process.env.SPOTIFY_TRACK_DETAILS,
 };
 
 module.exports = {

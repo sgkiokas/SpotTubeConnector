@@ -15,7 +15,7 @@ let landing = async (req, res) => {
     })();
 }
 
-router.get(endpoints.REDIRECT_URI, spotify.retrieveAccessToken);
+router.get(endpoints.REDIRECT_URI, [spotify.retrieveAccessToken, spotify.addSongToPlaylist]);
 router.get(endpoints.LANDING_PAGE, landing);
 
 module.exports =  router;

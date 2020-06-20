@@ -4,8 +4,7 @@ on:
   pull_request:
     paths:
     - 'config/**'
-    - 'front/**'
-    - 'routes/**'
+    - 'ui/**'
     - 'server/**'
     - 'test/**'
     - 'index.js'
