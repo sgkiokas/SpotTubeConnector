@@ -20,12 +20,16 @@
     "assert": "^2.0.0",
     "btoa": "^1.2.1",
     "express": "^4.17.1",
+    "google-auth-library": "^6.0.2",
+    "googleapis": "^52.1.0",
     "https": "^1.0.0",
     "js-base64": "^2.5.2",
+    "lodash": "^4.17.15",
     "open": "^7.0.4"
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "fs": "0.0.1-security",
     "mocha": "^8.0.1",
     "nock": "^12.0.3"
   }

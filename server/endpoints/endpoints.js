@@ -1,4 +1,5 @@
 module.exports = {
     LANDING_PAGE: '/',
-    REDIRECT_URI: '/callback',
+    YOUTUBE_REDIRECT_URI: '/youtubeAuthorizer',
+    SPOTIFY_REDIRECT_URI: '/spotifyAuthorizer',
 }

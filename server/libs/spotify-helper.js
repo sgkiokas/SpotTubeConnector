@@ -4,9 +4,9 @@ const utils = require('./utils');
 const base64 = require('js-base64').Base64;
 const assert = require('assert');
 
-const clientID = config.APP_CONFIG.CLIENT_ID;
-const redirectURI = encodeURIComponent(config.APP_CONFIG.REDIRECT_URI);
-const clientSecret = config.APP_CONFIG.CLIENT_SECRET;
+const clientID = config.APP_CONFIG.SPOTIFY_CLIENT_ID;
+const redirectURI = encodeURIComponent(config.APP_CONFIG.SPOTIFY_REDIRECT_URI);
+const clientSecret = config.APP_CONFIG.SPOTIFY_CLIENT_SECRET;
 const responseType = 'code';
 
 let ACCESS_TOKEN = '';
@@ -104,7 +104,7 @@ let addSongToPlaylist = async () => {
             console.log(`Your song has been successfully added to your playlist!`);
         } else {
             console.log(`There is no playlist with the name ${playlistKey}. Do you want to create it?`);
-            // TODO: add fucntionality to call the createPlaylist() in case the user selects 'yes'
+            // TODO: add functionality to call the createPlaylist() in case the user selects 'yes'
         }
     }
 }
